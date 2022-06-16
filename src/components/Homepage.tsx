@@ -1,4 +1,5 @@
 import React from 'react';
+// import { connect } from "react-redux";
 import './body.css';
 
 
@@ -29,17 +30,17 @@ const Homepage = ({ doctorHome, }: HomeProps) => {
                 <div className="...">
                     <img className="mb-3 w-30 h-30 rounded-full shadow-lg" src={`${profilePicture}`} alt="image"/>
                 </div>
-                <div className="pb-2 justify-start">
-                    <h3 className="text-gray-900 text-xl font-medium mb-2">{name}</h3>
-                    <p className="text-gray-700 text-base font-medium mb-4">{username}</p>
-                    <p className="text-gray-600 text-xs font-medium">{specialty}</p>
+                <div className="ml-10 justify-start">
+                    <h3 className="text-gray-600 text-2xl font-bold mb-1">{name}</h3>
+                    <h4 className="text-gray-700  font-medium mb-1">{username}</h4>
+                    <h4 className="text-gray-600  font-medium">{specialty}</h4>
                 </div>
                 <div className="mt-10">
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out "><strong>Request Appointment</strong></button>
+                    <button type="button" className="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out "><strong>Request Appointment</strong></button>
                 </div>
             </div><hr/>
-            <div className='p-3 '>
-                <h5 className="text-gray-600 text-xs"><strong>Phone: </strong>{telephone}</h5>
+            <div className='p-3' id='telephone'>
+                <h2 className="text-gray-600"><strong>Phone: </strong>{telephone}</h2>
             </div>
         </div>
     </div>
