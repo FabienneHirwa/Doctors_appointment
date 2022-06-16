@@ -23,7 +23,7 @@ function AdminForm() {
 
     </div>
     <div className="flex items-center">
-      <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+      <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
         Log In
       </button>
       
