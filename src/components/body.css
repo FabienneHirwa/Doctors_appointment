@@ -39,6 +39,7 @@
     grid-template-columns: 4fr 3fr;
     margin: 30px auto;
     width:70%;
+   
 }
 #calendarDoc{
     margin-left: 20px;
@@ -46,6 +47,10 @@
 }
 #doctorDetCard{
     width: 100%;
+}
+#AppointmentForm{
+    margin: 20px auto;
+    width: 40%;
 }
 
 .searchAdd{

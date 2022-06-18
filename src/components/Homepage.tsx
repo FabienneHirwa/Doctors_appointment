@@ -1,5 +1,4 @@
 import React from 'react';
-// import { connect } from "react-redux";
 import './body.css';
 import { Link } from "react-router-dom";
 
@@ -13,7 +12,6 @@ type HomeType = {
     specialty: string;
     
 }
-
 export interface HomeProps {
     doctorHome: HomeType;
 }
