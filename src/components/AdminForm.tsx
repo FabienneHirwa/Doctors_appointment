@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import './body.css';
 
 function AdminForm() {
+  const [name,setName] = useState('')
+  const [password,setPassword] = useState('')
+  
+  const submitButton = () =>{
+    if(name === "admin" && password === "admin"){
+      console.log('admin');
+      
+    }else{
+      console.log('not admin')
+    }
+  }
   return (
     <>
     <div className="" id="adminForm">
@@ -13,17 +24,23 @@ function AdminForm() {
       <label className=" text-gray-700 text-sm font-bold mb-2" htmlFor="username">
         Username
       </label>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" required/>
+      <input 
+      onChange={((e)=> setName(e.target.value))}
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" required/>
     </div>
     <div className="mb-6">
       <label className=" text-gray-700 text-sm font-bold mb-2" htmlFor="password">
         Password
       </label>
-      <input className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" required/>
+      <input 
+      onChange={((e)=> setPassword(e.target.value))}
+      className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" required/>
 
     </div>
     <div className="flex items-center">
-      <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+      <button
+      onClick={submitButton}
+      className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
         Log In
       </button>
       

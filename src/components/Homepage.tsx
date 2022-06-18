@@ -1,6 +1,7 @@
 import React from 'react';
 // import { connect } from "react-redux";
 import './body.css';
+import { Link } from "react-router-dom";
 
 
 
@@ -36,7 +37,12 @@ const Homepage = ({ doctorHome, }: HomeProps) => {
                     <h4 className="text-teal-600  font-medium">{specialty}</h4>
                 </div>
                 <div className="mt-10">
-                    <button type="button" className="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out "><strong>Request Appointment</strong></button>
+                    {/* <button type="button" className="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out "><strong>Request Appointment</strong></button> */}
+                    <Link to='/DoctorDetails' state={doctorHome}>
+                        <li className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                            <a className="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out "><strong>Request Appointment</strong></a>
+                            </li>
+                    </Link>
                 </div>
             </div><hr/>
             <div className='p-3' id='telephone'>

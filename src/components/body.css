@@ -34,6 +34,20 @@
     margin-left: 21%;
 }
 
+#doctorDet{
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    margin: 30px auto;
+    width:70%;
+}
+#calendarDoc{
+    margin-left: 20px;
+    
+}
+#doctorDetCard{
+    width: 100%;
+}
+
 .searchAdd{
     display: grid;
     grid-template-columns: 7fr 2fr;
