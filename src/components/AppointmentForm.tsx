@@ -29,7 +29,7 @@ function AppointmentForm() {
         time:location.state.data.time
       }
       AC.bookedDateSave(data)
-      window.location.reload()
+      // window.location.reload()
     }
   }
   return (
