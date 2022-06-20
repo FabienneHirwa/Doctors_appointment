@@ -1,9 +1,104 @@
-import React from "react";
+import React, { useState } from "react";
 import './body.css';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation ,useNavigate} from "react-router-dom";
 import Calendar from "react-calendar"
+import { useSelector } from "react-redux"
+
+
+// import { createBrowserHistory } from "history";
 function DoctorDetails(props: any) {
   const location:any = useLocation();
+  let history = useNavigate();
+  const [selectDate,setSelectDate] = useState(new Date())
+  const bookedDate = useSelector((state:any) => state.useBookedDate.bookedDate);
+  let fiflterDoctorDateBook = bookedDate.filter((u:any)=>u.doctor.name === location.state.name)
+  let [listTime,setListTime] =  
+  useState(
+  [
+    {time:"08 AM",status:false},
+    {time:"09 AM",status:false},
+    {time:"10 AM",status:false},
+    {time:"11 AM",status:false},
+    {time:"12 PM",status:false},
+    {time:"01 PM",status:false},
+    {time:"02 PM",status:false},
+    {time:"03 PM",status:false},
+    {time:"04 PM",status:false},
+    {time:"05 PM",status:false},
+    {time:"06 PM",status:false},
+    {time:"07 PM",status:false}
+  ])
+  const [time,setTime] = useState('')
+  const submitTheTime = () =>{
+    if(selectDate === undefined || time === undefined || selectDate===null || time === null || time === ""){
+      console.log('Fill The Context')
+    }else{
+   
+      return history('/AppointmentForm',{state:{data:{
+        user:location.state,
+        date:selectDate,
+        time:time,
+      }}})
+    }
+
+  }
+ 
+  const choiseCalenderDate = (newdate:any) =>{
+   
+    
+    let bookedTime:any = []
+    let testTime = new Date(newdate)
+    testTime.setDate(testTime.getDate()+1)
+
+    if (fiflterDoctorDateBook) {
+      fiflterDoctorDateBook.forEach((e:any)=>{
+        console.log(e.date.split('T')[0])
+        console.log(testTime.toISOString().split('T')[0])
+        if(e.date.split('T')[0] === testTime.toISOString().split('T')[0] ){
+          return bookedTime.push(e.time)
+        }
+        else{
+          console.log('sss')
+        }
+      })
+    }
+    setSelectDate(testTime)
+    bookedTime.forEach((v:any)=>{
+      listTime.forEach((e:any)=>{
+        if(v === e.time){
+          return e.status = true
+        }
+        else{
+          // return e.status = false
+        }
+         
+       
+        
+      })
+    })
+    console.log(bookedTime)
+    console.log(time)
+    if(bookedTime === "" || bookedTime.length === 0){
+      setListTime(
+        [
+          {time:"08 AM",status:false},
+          {time:"09 AM",status:false},
+          {time:"10 AM",status:false},
+          {time:"11 AM",status:false},
+          {time:"12 PM",status:false},
+          {time:"01 PM",status:false},
+          {time:"02 PM",status:false},
+          {time:"03 PM",status:false},
+          {time:"04 PM",status:false},
+          {time:"05 PM",status:false},
+          {time:"06 PM",status:false},
+          {time:"07 PM",status:false}
+        ])
+    }
+   
+
+
+  }
   return (
     <>
     <div className="" id="doctorDet">
@@ -42,24 +137,45 @@ function DoctorDetails(props: any) {
 </div>
 
 <hr/>
-<Calendar /><br/><br/>
+<Calendar  
+minDate={new Date()}
+onChange={choiseCalenderDate}
+ /><br/><br/>
+
 <div className="grid grid-cols-4 gap-4 pl-3 pr-3 ">
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">08 AM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">09 AM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">10 AM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">11 AM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">12 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">01 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">02 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">03 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">04 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">05 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">06 PM</a>
-<a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">07 PM</a>
+{
+  listTime.map((v,k)=>{
+    return <>
+      {v.time === time ? 
+       <a  key={k} 
+        className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg--600 dark:hover:bg-gray-700 dark:focus:ring-teal-800">{v.time}</a> 
+      :
+        <>
+          {
+            v.status === false ?
+            <a  key={k} 
+            onClick={(()=>setTime(v.time))} 
+            id="curs_p"
+             className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">{v.time}</a> 
+             :
+             <a  key={k} 
+             className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg--600 dark:hover:bg-gray-700 dark:focus:ring-teal-800">{v.time}</a>  
+          }
+        </>
+     
+      }
+    </>
+    
+  })
+}
 </div><br/><br/>
-<Link to='/AppointmentForm' className="block flex-grow lg:flex lg:items-center lg:w-auto pl-2 pt-3 pb-3 ">
-  <a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800 ml-20">Book an appointment</a>
-</Link>
+<button
+className="block flex-grow lg:flex lg:items-center lg:w-auto pl-2 pt-3 pb-3 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800 ml-20"
+onClick={submitTheTime}
+>
+Book an appointment
+</button>
+
 </div>
 </div>
 </div>

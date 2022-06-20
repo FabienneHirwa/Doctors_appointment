@@ -1,6 +1,9 @@
 * {
     font-family: Roboto, sans-serif;  
   }
+.highlight {
+    color:blueviolet;
+ }
 #adminForm{
     margin: 20px auto;
     width: 40%;
@@ -8,6 +11,9 @@
 #navbar{
     display: grid;
     grid-template-columns: 5fr 1fr;
+}
+#curs_p{
+    cursor: pointer;
 }
 #navbarSub{
     margin-right: 20px;

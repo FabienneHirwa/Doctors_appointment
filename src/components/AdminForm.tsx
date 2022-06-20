@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import './body.css';
-
+import { useNavigate } from "react-router-dom";
 function AdminForm() {
   const [name,setName] = useState('')
   const [password,setPassword] = useState('')
-  
+  const history = useNavigate()
   const submitButton = () =>{
     if(name === "admin" && password === "admin"){
+      history('/adminPage')
       console.log('admin');
       
     }else{
