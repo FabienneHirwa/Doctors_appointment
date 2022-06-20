@@ -7,6 +7,7 @@ import AdminForm from './components/AdminForm';
 import DoctorDetails from './components/DoctorDetails'
 import AppointmentForm from './components/AppointmentForm'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AdminPage from './components/AdminPage';
 import 'react-calendar/dist/Calendar.css';
 
 
@@ -20,6 +21,7 @@ function App() {
     <Route path="/AdminForm" element={<AdminForm />}/>
     <Route path="/DoctorDetails" element={<DoctorDetails />}/>
     <Route path="/AppointmentForm" element={<AppointmentForm />}/>
+    <Route path="/AdminPage" element={<AdminPage />}/>
   </Routes>
     </div>
     </Router>

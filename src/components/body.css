@@ -58,20 +58,9 @@
     margin: 20px auto;
     width: 40%;
 }
-
-.searchAdd{
+#adminPage{
     display: grid;
-    grid-template-columns: 7fr 2fr;
-    padding-top: 15px; 
-    padding-left: 25px;
-    margin: 10px auto ;
-    width: 550px;
-}
-.form-control{
-    border-radius: 4px;
-    width: 200px;
-}
-#searchBox{
-    margin-left: 30%;
-    margin-top: 10px;
+    grid-template-columns: 1.5fr 1fr;
+    margin: 5% auto;
+    width: 50%;
 }

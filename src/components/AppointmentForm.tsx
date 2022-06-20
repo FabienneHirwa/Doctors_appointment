@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from 'redux'
 import {actionBookedDate} from '../store/index'
-
+import cogoToast from 'cogo-toast';
 function AppointmentForm() {
   const location:any = useLocation();
   const [name,setName] = useState('')
@@ -14,7 +14,7 @@ function AppointmentForm() {
   const [email, setEmail] =useState('')
   const submitFunction = () =>{
     if(name === "" || surname === ""  || telephone === "" || email === "" ){
-      console.log('Fill All Inputs')
+      cogoToast.error('Fill All Inputs')
     }else{
       const AC = bindActionCreators(actionBookedDate,dispatch)
       let data = {
@@ -29,7 +29,7 @@ function AppointmentForm() {
         time:location.state.data.time
       }
       AC.bookedDateSave(data)
-      // window.location.reload()
+      cogoToast.success('Done')
     }
   }
   return (
