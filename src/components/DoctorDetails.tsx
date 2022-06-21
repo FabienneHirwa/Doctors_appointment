@@ -3,7 +3,6 @@ import './body.css';
 import { Link, useLocation ,useNavigate} from "react-router-dom";
 import Calendar from "react-calendar"
 import { useSelector } from "react-redux"
-import cogoToast from 'cogo-toast';
 
 // import { createBrowserHistory } from "history";
 function DoctorDetails(props: any) {
@@ -31,9 +30,9 @@ function DoctorDetails(props: any) {
   const [time,setTime] = useState('')
   const submitTheTime = () =>{
     if(selectDate === undefined || time === undefined || selectDate===null || time === null || time === ""){
-      cogoToast.error('Select The Time')
+      // cogoToast.error('Select The Time')
     }else{
-      cogoToast.success('Successfully Done!');
+      // cogoToast.success('Successfully Done!');
       return history('/AppointmentForm',{state:{data:{
         user:location.state,
         date:selectDate,

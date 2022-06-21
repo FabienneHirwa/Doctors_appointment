@@ -14,7 +14,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from 'redux'
 import {actionBookedDate} from '../store/index'
-import cogoToast from 'cogo-toast';
+// import cogoToast from 'cogo-toast';
 
 
 const Transition = React.forwardRef(function Transition(
@@ -75,7 +75,7 @@ function AdminPage() {
     const AC = bindActionCreators(actionBookedDate,dispatch)
     AC.deletebookedDateAndSave(data)
     handleClose()
-    cogoToast.success('Successfully Deleted');
+    // cogoToast.success('Successfully Deleted');
   }
   return (
     <>

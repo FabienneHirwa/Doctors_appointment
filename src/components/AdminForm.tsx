@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './body.css';
 import { useNavigate } from "react-router-dom";
-import cogoToast from 'cogo-toast';
 function AdminForm() {
   const [name,setName] = useState('')
   const [password,setPassword] = useState('')
@@ -9,10 +8,10 @@ function AdminForm() {
   const submitButton = () =>{
     if(name === "admin" && password === "admin"){
       history('/adminPage')
-      cogoToast.success('Login is Successfully Done');
+       // cogoToast.success('Login is Successfully Done');
       
     }else{
-      cogoToast.error('Please Use Correct Credentials');
+       // cogoToast.error('Please Use Correct Credentials');
     }
   }
   return (

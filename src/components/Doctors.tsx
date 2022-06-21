@@ -15,8 +15,6 @@ export interface InterfaceDoctors {
 const Doctors = () => {
     
     const [data] = useState<InterfaceDoctors[] | []>(getData)
-    //  const bookedDate = useSelector((state:any) => state.useBookedDate.bookedDate);
-    //  console.log(bookedDate)
     return (
         <>
             {data.length > 0 ? (
