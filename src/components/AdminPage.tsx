@@ -72,10 +72,14 @@ function AdminPage() {
     handleClickOpen()
   }
   const deleteUser = (data:any) =>{
-    const AC = bindActionCreators(actionBookedDate,dispatch)
-    AC.deletebookedDateAndSave(data)
-    handleClose()
-    // cogoToast.success('Successfully Deleted');
+    let confirmDel = prompt(`Write "yes" if you want to delete this patient.`)
+    if(confirmDel?.toLocaleLowerCase() === 'yes'){
+      const AC = bindActionCreators(actionBookedDate,dispatch)
+      AC.deletebookedDateAndSave(data)
+      handleClose()
+    }else{
+      handleClose()
+    }
   }
   return (
     <>
@@ -118,7 +122,7 @@ function AdminPage() {
           <DialogContentText id="alert-dialog-slide-description">
           <div>
           {detail.length === 0 ? 
-          <p>This Day is not yet Booked </p>
+          <p className="mt-5">Yet Booked </p>
             :<>
                 {detail.map((v:any,k)=>{
                   return <div key={k}>
@@ -147,7 +151,11 @@ function AdminPage() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-                   <Button onClick={(()=>deleteUser(detail))} style={{backgroundColor:"red",color:"white"}}>Delete</Button>
+          {
+            detail.length === 0 ? null :
+            <Button onClick={(()=>deleteUser(detail))} style={{backgroundColor:"red",color:"white"}}>Delete</Button>
+          }
+                   
                   <Button onClick={handleClose} style={{backgroundColor:"#00897B",color:"white"}}>OK</Button>
         </DialogActions>    
       </Dialog>

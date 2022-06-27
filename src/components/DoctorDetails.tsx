@@ -4,7 +4,7 @@ import { Link, useLocation ,useNavigate} from "react-router-dom";
 import Calendar from "react-calendar"
 import { useSelector } from "react-redux"
 
-// import { createBrowserHistory } from "history";
+
 function DoctorDetails(props: any) {
   const location:any = useLocation();
   let history = useNavigate();
@@ -51,13 +51,11 @@ function DoctorDetails(props: any) {
 
     if (fiflterDoctorDateBook) {
       fiflterDoctorDateBook.forEach((e:any)=>{
-        console.log(e.date.split('T')[0])
-        console.log(testTime.toISOString().split('T')[0])
         if(e.date.split('T')[0] === testTime.toISOString().split('T')[0] ){
           return bookedTime.push(e.time)
         }
         else{
-          console.log('sss')
+      //date not taken
         }
       })
     }

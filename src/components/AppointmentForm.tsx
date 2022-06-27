@@ -14,7 +14,7 @@ function AppointmentForm() {
   const [email, setEmail] =useState('')
   const submitFunction = () =>{
     if(name === "" || surname === ""  || telephone === "" || email === "" ){
-      // cogoToast.error('Fill All Inputs')
+      alert('Fill All Inputs')
     }else{
       const AC = bindActionCreators(actionBookedDate,dispatch)
       let data = {
@@ -29,7 +29,7 @@ function AppointmentForm() {
         time:location.state.data.time
       }
       AC.bookedDateSave(data)
-      // cogoToast.success('Done')
+      alert('Done')
     }
   }
   return (
