@@ -32,20 +32,6 @@ function AdminPage() {
   const [detail,setDetail] = useState([])
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const choiseCalenderDate = (newdate:any) =>{
-    let testTime = new Date(newdate)
-    testTime.setDate(testTime.getDate()+1)
-    setCalenderDate(testTime)
-  }
-  
   let [listTime,setListTime] =  
   useState(
   [
@@ -62,6 +48,54 @@ function AdminPage() {
     {time:"06 PM",status:false},
     {time:"07 PM",status:false}
   ])
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const choiseCalenderDate = (newdate:any) =>{
+    let testTime = new Date(newdate)
+    testTime.setDate(testTime.getDate()+1)
+    setCalenderDate(testTime)
+    
+
+    let dataOfChoiceDate = bookedDate.filter((u:any) => u.date.split('T')[0] === testTime.toISOString().split('T')[0]) ;
+    console.log(dataOfChoiceDate)
+    dataOfChoiceDate.forEach((v:any)=>{
+      listTime.forEach((e:any)=>{
+        if(v.time === e.time){
+          return e.status = true
+        }
+        else{
+          // return e.status = false
+        }
+         
+       
+        
+      })
+    })
+    console.log(listTime)
+    if(dataOfChoiceDate === "" || dataOfChoiceDate.length === 0){
+      setListTime(
+        [
+          {time:"08 AM",status:false},
+          {time:"09 AM",status:false},
+          {time:"10 AM",status:false},
+          {time:"11 AM",status:false},
+          {time:"12 PM",status:false},
+          {time:"01 PM",status:false},
+          {time:"02 PM",status:false},
+          {time:"03 PM",status:false},
+          {time:"04 PM",status:false},
+          {time:"05 PM",status:false},
+          {time:"06 PM",status:false},
+          {time:"07 PM",status:false}
+        ])
+    }
+  }
+  
   const getBookedDatailForUser = (time:any) =>{
     setTime(time)
     let fitlerWithDate =[]
@@ -69,6 +103,7 @@ function AdminPage() {
     let finalAns = []
     finalAns = fitlerWithDate.filter((u:any) => u.time === time ) ;
     setDetail(finalAns)
+    console.log(finalAns)
     handleClickOpen()
   }
   const deleteUser = (data:any) =>{
@@ -76,6 +111,21 @@ function AdminPage() {
     if(confirmDel?.toLocaleLowerCase() === 'yes'){
       const AC = bindActionCreators(actionBookedDate,dispatch)
       AC.deletebookedDateAndSave(data)
+      setListTime(
+        [
+          {time:"08 AM",status:false},
+          {time:"09 AM",status:false},
+          {time:"10 AM",status:false},
+          {time:"11 AM",status:false},
+          {time:"12 PM",status:false},
+          {time:"01 PM",status:false},
+          {time:"02 PM",status:false},
+          {time:"03 PM",status:false},
+          {time:"04 PM",status:false},
+          {time:"05 PM",status:false},
+          {time:"06 PM",status:false},
+          {time:"07 PM",status:false}
+        ])
       handleClose()
     }else{
       handleClose()
@@ -101,6 +151,8 @@ function AdminPage() {
              className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-teal-500 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">{v.time}</a> 
              :
              <a  key={k} 
+             onClick={(()=>getBookedDatailForUser(v.time))} 
+            id="curs_p"
              className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg--600 dark:hover:bg-gray-700 dark:focus:ring-teal-800">{v.time}</a>  
           }
     </>

@@ -1,9 +1,8 @@
 if(localStorage.getItem('loc') == null || localStorage.getItem('loc') == "" || localStorage.getItem('loc') == undefined){
-    // console.log('Welcome')
     localStorage.setItem('loc','[]')
 }
 // Get data from local storage, add data to local storage and delete data 
-const useBookedDate = (state = JSON.parse(localStorage.getItem('loc')),action) =>{
+const useBookedDate = (state:any = JSON.parse(localStorage.getItem('loc') || '[]'),action:any) =>{
     switch (action.type) {
         case "bookedDateSaveGet":
             return (
@@ -20,7 +19,7 @@ const useBookedDate = (state = JSON.parse(localStorage.getItem('loc')),action) =
             localStorage.setItem('loc',JSON.stringify(state))
             return state
         case "deletebookedDateAndSave": 
-        let filterToDelete = state.filter((u) => u.id !== action.payload[0].id) ;
+        let filterToDelete = state.filter((u:any) => u.id !== action.payload[0].id) ;
         localStorage.setItem('loc',JSON.stringify(filterToDelete))
         state =filterToDelete
         return state  
