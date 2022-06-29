@@ -133,8 +133,8 @@ function AdminPage() {
   }
   return (
     <>
+    <h1 className=" text-teal-700 text-2xl font-bold mt-8 " id="adminOver">ADMIN OVERVIEW</h1>
     <div id="adminPage">
-
     <Calendar 
     onChange={choiseCalenderDate}
     />

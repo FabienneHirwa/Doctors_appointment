@@ -61,6 +61,13 @@
 #adminPage{
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    margin: 5% auto;
+    margin-top: 2%;
+    margin-left: 25%;
+    margin-bottom: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#adminOver{
+    margin-left: 25%;
     width: 50%;
 }
